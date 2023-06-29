@@ -21,10 +21,10 @@ public class FileReader {
                     case "Age": profile.setAge(Integer.valueOf(value.trim())); break;
                     case "Email": profile.setEmail(value.trim()); break;
                     case "Phone": profile.setPhone(Long.valueOf(value.trim())); break;
-                    default: line=null;
                 }
                 line = bf.readLine();
             }
+            bf.close();
         } catch (IOException e) {
             Logger.getLogger(String.valueOf(e));
         }
