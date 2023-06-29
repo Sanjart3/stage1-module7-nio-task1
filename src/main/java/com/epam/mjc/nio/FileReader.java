@@ -11,8 +11,7 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
         Profile profile = new Profile();
-        try {
-            BufferedReader bf = new BufferedReader(new java.io.FileReader(file));
+        try(BufferedReader bf = new BufferedReader(new java.io.FileReader(file))) {
             String line = bf.readLine();
             while (line != null){
                 String value = line.split(":")[1];
@@ -21,10 +20,10 @@ public class FileReader {
                     case "Age": profile.setAge(Integer.valueOf(value.trim())); break;
                     case "Email": profile.setEmail(value.trim()); break;
                     case "Phone": profile.setPhone(Long.valueOf(value.trim())); break;
+                    default: break;
                 }
                 line = bf.readLine();
             }
-            bf.close();
         } catch (IOException e) {
             Logger.getLogger(String.valueOf(e));
         }
